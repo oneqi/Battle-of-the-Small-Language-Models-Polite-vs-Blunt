@@ -1,0 +1,34 @@
+#version: '3.8'
+
+services:
+  ollama-1:
+    image: ollama/ollama:latest
+    container_name: ollama-1
+    volumes:
+      - ollama_volume_1:/root/.ollama
+    ports:
+      - "11433:11434" # Exposed to your local machine 11433
+
+  ollama-2:
+    image: ollama/ollama:latest
+    container_name: ollama-2
+    volumes:
+      - ollama_volume_2:/root/.ollama
+    ports:
+      - "11435:11434" # Exposed to your local machine 11435
+
+  gradio-app:
+    build: .
+    container_name: gradio-app
+    ports:
+      - "7860:7860"
+    depends_on:
+      - ollama-1
+      - ollama-2
+    environment:
+      - OLLAMA_ONE_URL=http://ollama-1:11434
+      - OLLAMA_TWO_URL=http://ollama-2:11434
+
+volumes:
+  ollama_volume_1:
+  ollama_volume_2:
