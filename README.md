@@ -13,7 +13,7 @@ This simple lab illustrates prompt engineering around:
 
 Using `docker compose` and `Dockerfile` to create:
 - Gradio (web front end)
-- Ollama (middleware to manage `small language model`)
+- Ollama (middleware to manage `small language models`)
 
 ## Images Used
 - ollama/ollama:0.24.0
@@ -69,5 +69,6 @@ docker compose down
 ```
 example of the output
 ![Alt text](images/g5.png)
+
 
 
